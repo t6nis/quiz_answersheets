@@ -58,7 +58,7 @@ class report_display_options extends \mod_quiz_attempts_report_options {
 
     public function __construct($mode, $quiz, $cm, $course) {
         parent::__construct($mode, $quiz, $cm, $course);
-        $this->attempts = quiz_attempts_report::ENROLLED_ALL;
+        $this->attempts = quiz_attempts_report::ENROLLED_WITH;
 
         $this->userinfovisibility = self::possible_user_info_visibility_settings($cm);
     }
