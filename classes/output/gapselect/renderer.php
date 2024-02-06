@@ -28,7 +28,7 @@ use html_writer;
 use question_attempt;
 use question_display_options;
 use quiz_answersheets\utils;
-use quiz_attempt;
+use mod_quiz\quiz_attempt;
 
 defined('MOODLE_INTERNAL') || die();
 
