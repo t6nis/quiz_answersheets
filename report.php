@@ -347,7 +347,9 @@ class quiz_answersheets_report extends \mod_quiz\local\reports\attempts_report {
             echo "\nsave-pdf " . $CFG->wwwroot .
                     '/mod/quiz/report/answersheets/attemptsheet.php?attempt=' . $attempt->attempt .
                     '&userinfo=' . $options->combine_user_info_visibility() .
-                    ' as ' . $folder . '/quiz_attempt.pdf' . "\n";
+                    ' as '.str_replace(' ', '_', $this->quizobj->get_course()->shortname).'-'.str_replace(' ','_', $this->quizobj->get_quiz()->name).'-'.$attempt->firstname.'_'.$attempt->lastname.
+                ($attempt->attemptno > 1 ? '-attempt' . $attempt->attemptno : '').'.pdf' . "\n";
+                    //' as ' . $folder . '/quiz_attempt.pdf' . "\n";
 
             if (!$this->attempt_has_any_questions_with_files($attempt->attempt, $qtyperesponsefiles)) {
                 continue;
@@ -486,7 +488,7 @@ class quiz_answersheets_report extends \mod_quiz\local\reports\attempts_report {
             // Try fetch first and lastname
             $name = $attempt->lastname.'_'.$attempt->firstname.'-'.$attempt->userid;
         }
-        if (!empty($attempt->idnumber)) {
+        if (!$name && !empty($attempt->idnumber)) {
             $name = $this->clean_filename($attempt->idnumber);
         }
         if (!$name && !empty($attempt->username)) {
