@@ -347,7 +347,10 @@ class quiz_answersheets_report extends \mod_quiz\local\reports\attempts_report {
             echo "\nsave-pdf " . $CFG->wwwroot .
                     '/mod/quiz/report/answersheets/attemptsheet.php?attempt=' . $attempt->attempt .
                     '&userinfo=' . $options->combine_user_info_visibility() .
-                    ' as '.str_replace(' ', '_', $this->quizobj->get_course()->shortname).'-'.str_replace(' ','_', $this->quizobj->get_quiz()->name).'-'.$attempt->firstname.'_'.$attempt->lastname.
+                    ' as '.str_replace(' ', '_', $this->quizobj->get_course()->shortname).'-'.
+                str_replace(' ','_', $this->quizobj->get_quiz()->name).'-'.
+                str_replace(' ','_', $attempt->firstname).'_'.
+                str_replace(' ','_', $attempt->lastname).
                 ($attempt->attemptno > 1 ? '-attempt' . $attempt->attemptno : '').'.pdf' . "\n";
                     //' as ' . $folder . '/quiz_attempt.pdf' . "\n";
 
